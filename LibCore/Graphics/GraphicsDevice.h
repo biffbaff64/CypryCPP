@@ -25,7 +25,10 @@
 
 #ifndef CYPRYCPP_GRAPHICSDEVICE_H
 #define CYPRYCPP_GRAPHICSDEVICE_H
+
 #include <vector>
+
+#include "ICursor.h"
 
 class GraphicsDevice
 {
@@ -40,9 +43,7 @@ public:
     /// <summary>
     /// Gets the type of graphics backend being used.
     /// </summary>
-    GraphicsBackend
-    .
-    BackendType GraphicsType;
+    GraphicsBackend::BackendType GraphicsType;
 
     /// <summary>
     /// Gets or sets the buffer config data (bits per pixel, depth, stencil, samples).
@@ -229,7 +230,7 @@ public:
     /// </summary>
     /// <param name="extension">The name of the OpenGL extension to check (e.g., "GL_ARB_texture_non_power_of_two").</param>
     /// <returns><c>true</c> if the extension is supported, <c>false</c> otherwise.</returns>
-    bool SupportsExtension( string extension );
+    bool SupportsExtension( char* extension );
 
     /// <summary>
     /// Returns whether cubemap seamless feature is supported.

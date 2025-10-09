@@ -31,4 +31,14 @@ add_library(CypryCPP SHARED library.cpp
         LibCore/Graphics/Color.cpp
         LibCore/Graphics/Color.h
         LibCore/Graphics/GraphicsDevice.cpp
-        LibCore/Graphics/GraphicsDevice.h)
+        LibCore/Graphics/GraphicsDevice.h
+        LibCore/Graphics/ICursor.cpp
+        LibCore/Graphics/ICursor.h
+        LibCore/Graphics/OpenGL/GlVersion.cpp
+        LibCore/Graphics/OpenGL/GlVersion.h
+        LibCore/Utils/Collections/ObjectMap.cpp
+        LibCore/Utils/Collections/ObjectMap.h
+        LibCore/Utils/Logging/Logger.cpp
+        LibCore/Utils/Logging/Logger.h
+        LibCore/Maths/MathUtils.cpp
+        LibCore/Maths/MathUtils.h)
