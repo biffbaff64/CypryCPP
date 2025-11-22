@@ -29,21 +29,21 @@
 
 Platform::ApplicationType Platform::GetTargetPlatform() const
 {
-    return m_TargetPlatform;
+    return mTargetPlatform;
 }
 
 Platform::ApplicationFamily Platform::GetFamilyGroup() const
 {
-    return m_FamilyGroup;
+    return mFamilyGroup;
 }
 
 void Platform::SetTargetPlatform( const ApplicationType targetPlatform )
 {
-    m_TargetPlatform = targetPlatform;
+    mTargetPlatform = targetPlatform;
 }
 
 void Platform::SetFamilyGroup( const ApplicationFamily familyGroup )
 {
-    m_FamilyGroup = familyGroup;
+    mFamilyGroup = familyGroup;
 }
 

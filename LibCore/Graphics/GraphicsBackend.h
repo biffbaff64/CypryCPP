@@ -23,31 +23,19 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "MathUtils.h"
+#ifndef CYPRYCPP_GRAPHICSBACKEND_H
+#define CYPRYCPP_GRAPHICSBACKEND_H
 
-int MathUtils::NextPowerOfTwo( int value )
+class GraphicsBackend
 {
-    if ( value == 0 )
+public:
+    enum class BackendType
     {
-        return 1;
-    }
+        Android,
+        Windows,
+        Linux,
+        MacOs,
+    };
+};
 
-    value--;
-    value |= value >> 1;
-    value |= value >> 2;
-    value |= value >> 4;
-    value |= value >> 8;
-    value |= value >> 16;
-
-    return value + 1;
-}
-
-int MathUtils::NextPowerOfTwo( int value, int minValue )
-{
-    if ( value < minValue )
-    {
-        return minValue;
-    }
-
-    return NextPowerOfTwo( value );
-}
+#endif //CYPRYCPP_GRAPHICSBACKEND_H

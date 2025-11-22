@@ -26,7 +26,7 @@
 #ifndef CYPRYCPP_GLVERSION_H
 #define CYPRYCPP_GLVERSION_H
 
-class GLVersion
+class GlVersion
 {
 };
 

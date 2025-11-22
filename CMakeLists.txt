@@ -41,4 +41,16 @@ add_library(CypryCPP SHARED library.cpp
         LibCore/Utils/Logging/Logger.cpp
         LibCore/Utils/Logging/Logger.h
         LibCore/Maths/MathUtils.cpp
-        LibCore/Maths/MathUtils.h)
+        LibCore/Maths/MathUtils.h
+        LibCore/Assets/AssetManager.cpp
+        LibCore/Assets/AssetManager.h
+        LibCore/Assets/Loaders/Resolvers/IFileHandleResolver.cpp
+        LibCore/Assets/Loaders/Resolvers/IFileHandleResolver.h
+        LibCore/Graphics/GraphicsBackend.cpp
+        LibCore/Graphics/GraphicsBackend.h
+        LibCore/Graphics/FrameBuffers/FramebufferConfig.cpp
+        LibCore/Graphics/FrameBuffers/FramebufferConfig.h
+        LibCore/Graphics/Utils/HdpiUtils.cpp
+        LibCore/Graphics/Utils/HdpiUtils.h
+        LibCore/Graphics/Pixmap.cpp
+        LibCore/Graphics/Pixmap.h)

@@ -32,56 +32,56 @@
 class Logger
 {
 public:
-    static void initialise( int log_level, bool enable_write_to_file, char *filename );
+    static void Initialise( int log_level, bool enable_write_to_file, char *filename );
 
-    static void debug( const char *message, bool boxed_debug = false );
-    static void debug( std::string message, bool boxed_debug = false );
+    static void Debug( const char *message, bool boxed_debug = false );
+    static void Debug( std::string message, bool boxed_debug = false );
 
-    static void debug_conditional( const char *message, bool condition );
-    static void debug_conditional( std::string message, bool condition );
+    static void DebugConditional( const char *message, bool condition );
+    static void DebugConditional( std::string message, bool condition );
 
-    static void error( const char *message );
-    static void error( std::string message );
+    static void Error( const char *message );
+    static void Error( std::string message );
 
-    static void check_point();
-    static void divider( char ch = '=', int length = 80 );
-    static void divider_conditional( bool condition, char ch = '=', int length = 80 );
+    static void CheckPoint();
+    static void Divider( char ch = '=', int length = 80 );
+    static void DividerConditional( bool condition, char ch = '=', int length = 80 );
 
-    static void open_debug_file( const char *filename, bool delete_existing = true );
-    static void open_debug_file( std::string filename, bool delete_existing = true );
+    static void OpenDebugFile( const char *filename, bool delete_existing = true );
+    static void OpenDebugFile( std::string filename, bool delete_existing = true );
 
-    static void write_to_debug_file( const char *message );
-    static void write_to_debug_file( std::string message );
+    static void WriteToDebugFile( const char *message );
+    static void WriteToDebugFile( std::string message );
 
-    static void close_debug_file();
+    static void CloseDebugFile();
 
-    static void enable_debug_logging();
-    static void disable_debug_logging();
-    static void enable_error_logging();
-    static void disable_error_logging();
-    static void enable_check_point_logging();
-    static void disable_check_point_logging();
-    static void enable_write_to_file();
-    static void disable_write_to_file();
-    static void set_log_level( int level );
+    static void EnableDebugLogging();
+    static void DisableDebugLogging();
+    static void EnableErrorLogging();
+    static void DisableErrorLogging();
+    static void EnableCheckPointLogging();
+    static void DisableCheckPointLogging();
+    static void EnableWriteToFile();
+    static void DisableWriteToFile();
+    static void SetLogLevel( int level );
 
 private:
-    struct CallerID
+    struct CallerId
     {
         const char *filename;
         int         line;
         const char *function;
     };
 
-    Logger() = default;
+    Logger()  = default;
     ~Logger() = default;
 
-    static char* create_message( const char* tag, CallerID cid, const char* format_string );
-    static CallerID make_caller_id();
-    static char* get_timestamp_info();
-    static void get_caller_info( CallerID& cid );
+    static char *   CreateMessage( const char *tag, CallerId cid, const char *format_string );
+    static CallerId MakeCallerId();
+    static char *   GetTimestampInfo();
+    static void     GetCallerInfo( CallerId &cid );
 
-    static bool is_enabled( int level );
+    static bool IsEnabled( int level );
 };
 
 // Define the DEBUG macro only if the preprocessor symbol DEBUG is defined

@@ -23,31 +23,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "MathUtils.h"
+#ifndef CYPRYCPP_PIXMAP_H
+#define CYPRYCPP_PIXMAP_H
 
-int MathUtils::NextPowerOfTwo( int value )
+class Pixmap
 {
-    if ( value == 0 )
-    {
-        return 1;
-    }
+};
 
-    value--;
-    value |= value >> 1;
-    value |= value >> 2;
-    value |= value >> 4;
-    value |= value >> 8;
-    value |= value >> 16;
-
-    return value + 1;
-}
-
-int MathUtils::NextPowerOfTwo( int value, int minValue )
-{
-    if ( value < minValue )
-    {
-        return minValue;
-    }
-
-    return NextPowerOfTwo( value );
-}
+#endif //CYPRYCPP_PIXMAP_H

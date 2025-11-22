@@ -34,183 +34,183 @@
 #include "../Logging/Logger.h"
 #include "../../Maths/MathUtils.h"
 
-template< typename TK, typename TV >
-ObjectMap< TK, TV >::ObjectMap() : ObjectMap( DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR )
+template< typename Tk, typename Tv >
+ObjectMap< Tk, Tv >::ObjectMap() : ObjectMap( DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR )
 {
 }
 
-template< typename TK, typename TV >
-ObjectMap< TK, TV >::ObjectMap( int initialCapacity )
+template< typename Tk, typename Tv >
+ObjectMap< Tk, Tv >::ObjectMap( int initialCapacity )
     : ObjectMap( initialCapacity, DEFAULT_LOAD_FACTOR )
 {
 }
 
-template< typename TK, typename TV >
-ObjectMap< TK, TV >::ObjectMap( int initial_capacity, float load_factor, bool debug )
+template< typename Tk, typename Tv >
+ObjectMap< Tk, Tv >::ObjectMap( int initialCapacity, float loadFactor, bool debug )
 {
-    if ( m_load_factor <= 0.0f || m_load_factor >= 1.0f )
+    if ( loadFactor <= 0.0f || loadFactor >= 1.0f )
     {
-        throw std::runtime_error( std::format( "loadFactor must be > 0 and < 1: {}", load_factor ) );
+        throw std::runtime_error( std::format( "loadFactor must be > 0 and < 1: {}", loadFactor ) );
     }
 
-    m_load_factor = load_factor;
+    loadFactor = loadFactor;
 
-    int tabl_size = table_size( initial_capacity, load_factor );
+    int tableSize = TableSize( initialCapacity, loadFactor );
 
-    m_threshold = static_cast< int >( static_cast< float >( tabl_size ) * load_factor );
-    m_mask      = tabl_size - 1;
-    m_shift     = std::countl_zero( static_cast< unsigned int >( m_mask ) );
+    mThreshold = static_cast< int >( static_cast< float >( tableSize ) * loadFactor );
+    mMask      = tableSize - 1;
+    mShift     = std::countl_zero( static_cast< unsigned int >( mMask ) );
 
-    allocate_tables( tabl_size );
+    AllocateTables( tableSize );
 
     if ( debug )
     {
-        Logger::debug( std::format( "initialCapacity: {}", initial_capacity ) );
-        Logger::debug( std::format( "initialCapacity * loadFactor: {}", ( float )initial_capacity * load_factor ) );
-        Logger::debug( std::format( "KeyTable.Size: {}", std::size( get_keys() ) ) );
-        Logger::debug( std::format( "ValueTable.Size: {}", std::size( get_values() ) ) );
+        Logger::Debug( std::format( "initialCapacity: {}", initialCapacity ) );
+        Logger::Debug( std::format( "initialCapacity * loadFactor: {}", ( float )initialCapacity * loadFactor ) );
+        Logger::Debug( std::format( "mKeyTable.Size: {}", std::size( GetKeys() ) ) );
+        Logger::Debug( std::format( "ValueTable.Size: {}", std::size( GetValues() ) ) );
     }
 }
 
-template< typename TK, typename TV >
-ObjectMap< TK, TV >::ObjectMap( const ObjectMap &other_map )
-    : ObjectMap( static_cast< int >( other_map.m_key_table.m_length * other_map.m_load_factor ), // Initial capacity
-                 other_map.m_load_factor,                                                        // Load factor
+template< typename Tk, typename Tv >
+ObjectMap< Tk, Tv >::ObjectMap( const ObjectMap &otherMap )
+    : ObjectMap( static_cast< int >( otherMap.mKeyTable.m_length * otherMap.mLoadFactor ), // Initial capacity
+                 otherMap.mLoadFactor,                                                     // Load factor
                  false )
 {
-    m_key_table   = other_map.m_key_table;
-    m_value_table = other_map.m_value_table;
+    mKeyTable   = otherMap.mKeyTable;
+    mValueTable = otherMap.mValueTable;
 
-    m_size = other_map.m_size;
+    mSize = otherMap.mSize;
 }
 
-template< typename TK, typename TV >
-int ObjectMap< TK, TV >::table_size( int initial_capacity, float load_factor )
+template< typename Tk, typename Tv >
+int ObjectMap< Tk, Tv >::TableSize( int initialCapacity, float loadFactor )
 {
-    return MathUtils::next_power_of_two( std::max( 2, ( int )std::ceil( ( float )initial_capacity / load_factor ) ) );
+    return MathUtils::NextPowerOfTwo( std::max( 2, ( int )std::ceil( ( float )initialCapacity / loadFactor ) ) );
 }
 
-template< typename TK, typename TV >
-void ObjectMap< TK, TV >::allocate_tables( int initial_capacity )
+template< typename Tk, typename Tv >
+void ObjectMap< Tk, Tv >::AllocateTables( int initialCapacity )
 {
-    if ( initial_capacity <= 0 )
+    if ( initialCapacity <= 0 )
     {
         throw std::invalid_argument( "size must be > 0" );
     }
 
     // initialise the vectors to hold 'initial_capacity' number of elements.
-    m_key_table.reserve( initial_capacity );
-    m_value_table.reserve( initial_capacity );
+    mKeyTable.reserve( initialCapacity );
+    mValueTable.reserve( initialCapacity );
 
-    m_capacity = initial_capacity;
-    m_size     = 0;
+    mCapacity = initialCapacity;
+    mSize     = 0;
 }
 
 // ==============================================
 // Getters
 // ==============================================
 
-template< typename TK, typename TV >
-int ObjectMap< TK, TV >::get_size() const
+template< typename Tk, typename Tv >
+int ObjectMap< Tk, Tv >::GetSize() const
 {
-    return m_size;
+    return mSize;
 }
 
-template< typename TK, typename TV >
-bool ObjectMap< TK, TV >::get_allocate_iterators() const
+template< typename Tk, typename Tv >
+bool ObjectMap< Tk, Tv >::GetAllocateIterators() const
 {
-    return m_allocate_iterators;
+    return mAllocateIterators;
 }
 
-template< typename TK, typename TV >
-TK ObjectMap< TK, TV >::get_key( int index )
+template< typename Tk, typename Tv >
+Tk ObjectMap< Tk, Tv >::GetKey( int index )
 {
-    return m_key_table[ index ];
+    return mKeyTable[ index ];
 }
 
-template< typename TK, typename TV >
-TV ObjectMap< TK, TV >::get_value( int index )
+template< typename Tk, typename Tv >
+Tv ObjectMap< Tk, Tv >::GetValue( int index )
 {
-    return m_value_table[ index ];
+    return mValueTable[ index ];
 }
 
-template< typename TK, typename TV >
-TK *ObjectMap< TK, TV >::get_keys()
+template< typename Tk, typename Tv >
+Tk *ObjectMap< Tk, Tv >::GetKeys()
 {
-    return m_key_table;
+    return mKeyTable;
 }
 
-template< typename TK, typename TV >
-TV *ObjectMap< TK, TV >::get_values()
+template< typename Tk, typename Tv >
+Tv *ObjectMap< Tk, Tv >::GetValues()
 {
-    return m_value_table;
+    return mValueTable;
 }
 
 // ==============================================
 // Setters
 // ==============================================
 
-template< typename TK, typename TV >
-void ObjectMap< TK, TV >::set_size( int value )
+template< typename Tk, typename Tv >
+void ObjectMap< Tk, Tv >::SetSize( int value )
 {
-    m_size = value;
+    mSize = value;
 }
 
-template< typename TK, typename TV >
-void ObjectMap< TK, TV >::set_allocate_iterators( bool value )
+template< typename Tk, typename Tv >
+void ObjectMap< Tk, Tv >::SetAllocateIterators( bool value )
 {
-    m_allocate_iterators = value;
+    mAllocateIterators = value;
 }
 
-template< typename TK, typename TV >
-void ObjectMap< TK, TV >::set_key( int index, TK value )
+template< typename Tk, typename Tv >
+void ObjectMap< Tk, Tv >::SetKey( int index, Tk value )
 {
-    m_key_table[ index ] = value;
+    mKeyTable[ index ] = value;
 }
 
-template< typename TK, typename TV >
-void ObjectMap< TK, TV >::set_value( int index, TV value )
+template< typename Tk, typename Tv >
+void ObjectMap< Tk, Tv >::SetValue( int index, Tv value )
 {
-    m_value_table[ index ] = value;
+    mValueTable[ index ] = value;
 }
 
 // ==============================================
 // Destructor
 // ==============================================
 
-template< typename TK, typename TV >
-ObjectMap< TK, TV >::~ObjectMap()
+template< typename Tk, typename Tv >
+ObjectMap< Tk, Tv >::~ObjectMap()
 {
-    m_key_table.clear();
-    m_value_table.clear();
+    mKeyTable.clear();
+    mValueTable.clear();
 
-    m_key_table   = nullptr;
-    m_value_table = nullptr;
+    mKeyTable   = nullptr;
+    mValueTable = nullptr;
 }
 
 // ==============================================
 // Miscellaneous
 // ==============================================
 
-template< typename TK, typename TV >
-int ObjectMap< TK, TV >::Place( const TK &item ) const
+template< typename Tk, typename Tv >
+int ObjectMap< Tk, Tv >::Place( const Tk &item ) const
 {
     // 1. Get the hash code (equivalent to item.hashCode() in Java)
     // std::hash returns size_t, which is usually 64-bit on modern systems.
-    std::hash< TK > hasher;
-    size_t          hash_code = hasher( item );
+    std::hash< Tk > hasher;
+    const size_t    hashCode = hasher( item );
 
     // Ensure hash_code is treated as a 64-bit unsigned integer (uint64_t)
-    auto u64_hash = hash_code;
+    size_t u64Hash = hashCode;
 
     // 2. Perform unsigned 64-bit multiplication
     // The result is an unsigned 64-bit integer.
-    uint64_t multiplied = u64_hash * MAGIC_MULTIPLIER;
+    uint64_t multiplied = u64Hash * MAGIC_MULTIPLIER;
 
     // 3. Perform the logical (unsigned) right shift (>>> in Java)
     // In C++, the right shift operator >> on an unsigned type (uint64_t)
     // is guaranteed to be a logical (unsigned) shift.
-    uint64_t shifted = multiplied >> m_shift;
+    uint64_t shifted = multiplied >> mShift;
 
     // 4. Return as an int (Java's 'place' method returns int)
     // This is a truncation/cast, replicating the final (int) cast in Java.

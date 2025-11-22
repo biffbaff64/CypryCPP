@@ -23,31 +23,17 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "MathUtils.h"
+#ifndef CYPRYCPP_HDPIUTILS_H
+#define CYPRYCPP_HDPIUTILS_H
 
-int MathUtils::NextPowerOfTwo( int value )
+enum class HdpiMode
 {
-    if ( value == 0 )
-    {
-        return 1;
-    }
+    Logical,
+    Pixels,
+};
 
-    value--;
-    value |= value >> 1;
-    value |= value >> 2;
-    value |= value >> 4;
-    value |= value >> 8;
-    value |= value >> 16;
-
-    return value + 1;
-}
-
-int MathUtils::NextPowerOfTwo( int value, int minValue )
+class HdpiUtils
 {
-    if ( value < minValue )
-    {
-        return minValue;
-    }
+};
 
-    return NextPowerOfTwo( value );
-}
+#endif //CYPRYCPP_HDPIUTILS_H

@@ -28,7 +28,7 @@
 #include <cstdint>
 #include <vector>
 
-template< typename TK, typename TV >
+template< typename Tk, typename Tv >
 class ObjectMap
 {
 public:
@@ -47,18 +47,18 @@ public:
     /// <summary>
     ///
     /// </summary>
-    /// <param name="initial_capacity"></param>
-    /// <param name="load_factor"></param>
+    /// <param name="initialCapacity"></param>
+    /// <param name="loadFactor"></param>
     /// <param name="debug"></param>
-    explicit ObjectMap( int   initial_capacity = DEFAULT_CAPACITY,
-                        float load_factor      = DEFAULT_LOAD_FACTOR,
-                        bool  debug            = false );
+    explicit ObjectMap( int   initialCapacity = DEFAULT_CAPACITY,
+                        float loadFactor      = DEFAULT_LOAD_FACTOR,
+                        bool  debug           = false );
 
     /// <summary>
     ///
     /// </summary>
-    /// <param name="other_map"></param>
-    ObjectMap( const ObjectMap &other_map );
+    /// <param name="otherMap"></param>
+    ObjectMap( const ObjectMap &otherMap );
 
     // ------------------------------------------
 
@@ -67,10 +67,10 @@ public:
     /// <summary>
     ///
     /// </summary>
-    /// <param name="initial_capacity"></param>
-    /// <param name="load_factor"></param>
+    /// <param name="initialCapacity"></param>
+    /// <param name="loadFactor"></param>
     /// <returns></returns>
-    [[nodiscard]] int table_size( int initial_capacity, float load_factor );
+    [[nodiscard]] int TableSize( int initialCapacity, float loadFactor );
 
     // ------------------------------------------
 
@@ -79,8 +79,8 @@ public:
     /// <summary>
     ///
     /// </summary>
-    /// <param name="initial_capacity"></param>
-    void allocate_tables( int initial_capacity );
+    /// <param name="initialCapacity"></param>
+    void AllocateTables( int initialCapacity );
 
     // ------------------------------------------
     // ------------------------------------------
@@ -93,39 +93,39 @@ public:
     ///
     /// </summary>
     /// <returns></returns>
-    [[nodiscard]] int get_size() const;
+    [[nodiscard]] int GetSize() const;
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
-    [[nodiscard]] bool get_allocate_iterators() const;
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-    TK get_key( int index );
+    [[nodiscard]] bool GetAllocateIterators() const;
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="index"></param>
     /// <returns></returns>
-    TV get_value( int index );
+    Tk GetKey( int index );
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    Tv GetValue( int index );
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
-    TK *get_keys();
+    Tk *GetKeys();
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
-    TV *get_values();
+    Tv *GetValues();
 
     // ------------------------------------------
     // Setters
@@ -135,27 +135,27 @@ public:
     ///
     /// </summary>
     /// <param name="value"></param>
-    void set_size( int value );
+    void SetSize( int value );
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
-    void set_allocate_iterators( bool value );
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="index"></param>
-    /// <param name="value"></param>
-    void set_key( int index, TK value );
+    void SetAllocateIterators( bool value );
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="index"></param>
     /// <param name="value"></param>
-    void set_value( int index, TV value );
+    void SetKey( int index, Tk value );
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="value"></param>
+    void SetValue( int index, Tv value );
 
     // ------------------------------------------
     // Destructor
@@ -167,49 +167,47 @@ public:
     ~ObjectMap();
 
 protected:
-    int  place( const TK &item ) const;
-    int  locate_key( const TK &key ) const;
-    TV   put( const TK &key, const TV &value );
-    void put_all( const ObjectMap &other_map );
-    void put_resize( TK key, TV value );
-    TV   get( const TK &key ) const;
-    TV   get( const TK &key, TV default_value ) const;
-    TV remove( const TK &key );
-    [[nodiscard]] bool not_empty() const;
-    [[nodiscard]] bool is_empty() const;
-    void shrink( int maximum_capacity );
-    void clear( int maximum_capacity );
-    void clear();
-    bool contains_value( const TV &value, bool identity ) const;
-    bool contains_key( const TK &key ) const;
-    TK find_key( const TK &value, bool identity ) const;
-    void ensure_capacity( int additional_capacity );
-    void resize( int additional_capacity );
-    bool equals( const ObjectMap &other_map ) const;
-    bool equals_identity( const ObjectMap &other_map ) const;
-    std::string to_string() const;
-    std::string to_string( std::string separator ) const;
-    std::string to_string( std::string separator, bool braces ) const;
-
-
+    int                       Place( const Tk &item ) const;
+    int                       LocateKey( const Tk &key ) const;
+    Tv                        Put( const Tk &key, const Tv &value );
+    void                      PutAll( const ObjectMap &otherMap );
+    void                      PutResize( Tk key, Tv value );
+    Tv                        Get( const Tk &key ) const;
+    Tv                        Get( const Tk &key, Tv defaultValue ) const;
+    Tv                        Remove( const Tk &key );
+    [[nodiscard]] bool        NotEmpty() const;
+    [[nodiscard]] bool        IsEmpty() const;
+    void                      Shrink( int maximumCapacity );
+    void                      Clear( int maximumCapacity );
+    void                      Clear();
+    bool                      ContainsValue( const Tv &value, bool identity ) const;
+    bool                      ContainsKey( const Tk &key ) const;
+    Tk                        FindKey( const Tk &value, bool identity ) const;
+    void                      EnsureCapacity( int additionalCapacity );
+    void                      Resize( int additionalCapacity );
+    [[nodiscard]] bool        Equals( const ObjectMap &otherMap ) const;
+    [[nodiscard]] bool        EqualsIdentity( const ObjectMap &otherMap ) const;
+    [[nodiscard]] std::string ToString() const;
+    [[nodiscard]] std::string ToString( std::string separator ) const;
+    [[nodiscard]] std::string ToString( std::string separator, bool braces ) const;
 
 private:
     static constexpr int      DEFAULT_CAPACITY    = 51;
     static constexpr float    DEFAULT_LOAD_FACTOR = 0.8f;
     static constexpr uint64_t MAGIC_MULTIPLIER    = 0x9E3779B97F4A7C15ULL;
 
-    int m_size      = 0;
-    int m_shift     = 0;
-    int m_mask      = 0;
-    int m_threshold = 0;
-    int m_capacity  = 0;
+    int mSize      = 0;
+    int mShift     = 0;
+    int mMask      = 0;
+    int mThreshold = 0;
+    int mCapacity  = 0;
 
-    float m_load_factor = 0;
+    float mLoadFactor = 0;
 
-    bool m_allocate_iterators = false;
+    bool mAllocateIterators = false;
 
-    std::vector< TK > m_key_table;
-    std::vector< TV > m_value_table;
+    std::vector< Tk > mKeyTable;
+    std::vector< Tv > mValueTable;
 };
 
 #endif //CYPRYCPP_OBJECTMAP_H

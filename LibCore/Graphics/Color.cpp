@@ -30,40 +30,40 @@
 
 // ============================================================================
 
-const Color Color::Red( 1.0f, 0.0f, 0.0f, 1.0f );
-const Color Color::Green( 0.0f, 1.0f, 0.0f, 1.0f );
-const Color Color::Blue( 0.0f, 0.0f, 1.0f, 1.0f );
-const Color Color::Clear( 0.0f, 0.0f, 0.0f, 0.0f );
-const Color Color::White( 1.0f, 1.0f, 1.0f, 1.0f );
-const Color Color::Black( 0.0f, 0.0f, 0.0f, 1.0f );
-const Color Color::Gray( 0.5f, 0.5f, 0.5f, 1.0f );
-const Color Color::LightGray( 0.75f, 0.75f, 0.75f, 1.0f );
-const Color Color::DarkGray( 0.25f, 0.25f, 0.25f, 1.0f );
-const Color Color::Slate( 0.439f, 0.502f, 0.565f, 1.0f );
-const Color Color::Navy( 0.0f, 0.0f, 0.502f, 1.0f );
-const Color Color::Royal( 0.255f, 0.0f, 0.502f, 1.0f );
-const Color Color::Sky( 0.529f, 0.808f, 0.922f, 1.0f );
-const Color Color::Cyan( 0.0f, 1.0f, 1.0f, 1.0f );
-const Color Color::Teal( 0.0f, 0.502f, 0.502f, 1.0f );
-const Color Color::Chartreuse( 0.498f, 1.0f, 0.0f, 1.0f );
-const Color Color::Lime( 0.0f, 1.0f, 0.0f, 1.0f );
-const Color Color::Forest( 0.133f, 0.545f, 0.133f, 1.0f );
-const Color Color::Olive( 0.502f, 0.502f, 0.0f, 1.0f );
-const Color Color::Yellow( 1.0f, 1.0f, 0.0f, 1.0f );
-const Color Color::Gold( 1.0f, 0.843f, 0.0f, 1.0f );
-const Color Color::Goldenrod( 0.855f, 0.647f, 0.125f, 1.0f );
-const Color Color::Orange( 1.0f, 0.647f, 0.0f, 1.0f );
-const Color Color::Brown( 0.647f, 0.165f, 0.165f, 1.0f );
-const Color Color::Tan( 0.824f, 0.706f, 0.549f, 1.0f );
-const Color Color::Firebrick( 0.698f, 0.133f, 0.133f, 1.0f );
-const Color Color::Scarlet( 1.0f, 0.271f, 0.271f, 1.0f );
-const Color Color::Coral( 1.0f, 0.498f, 0.314f, 1.0f );
-const Color Color::Salmon( 0.980f, 0.502f, 0.447f, 1.0f );
-const Color Color::Pink( 1.0f, 0.753f, 0.796f, 1.0f );
-const Color Color::Magenta( 1.0f, 0.0f, 1.0f, 1.0f );
-const Color Color::Purple( 0.502f, 0.0f, 0.502f, 1.0f );
-const Color Color::Violet( 0.933f, 0.510f, 0.933f, 1.0f );
-const Color Color::Maroon( 0.502f, 0.0f, 0.0f, 1.0f );
+const Color Color::RED( 1.0f, 0.0f, 0.0f, 1.0f );
+const Color Color::GREEN( 0.0f, 1.0f, 0.0f, 1.0f );
+const Color Color::BLUE( 0.0f, 0.0f, 1.0f, 1.0f );
+const Color Color::CLEAR( 0.0f, 0.0f, 0.0f, 0.0f );
+const Color Color::WHITE( 1.0f, 1.0f, 1.0f, 1.0f );
+const Color Color::BLACK( 0.0f, 0.0f, 0.0f, 1.0f );
+const Color Color::GRAY( 0.5f, 0.5f, 0.5f, 1.0f );
+const Color Color::LIGHTGRAY( 0.75f, 0.75f, 0.75f, 1.0f );
+const Color Color::DARKGRAY( 0.25f, 0.25f, 0.25f, 1.0f );
+const Color Color::SLATE( 0.439f, 0.502f, 0.565f, 1.0f );
+const Color Color::NAVY( 0.0f, 0.0f, 0.502f, 1.0f );
+const Color Color::ROYAL( 0.255f, 0.0f, 0.502f, 1.0f );
+const Color Color::SKY( 0.529f, 0.808f, 0.922f, 1.0f );
+const Color Color::CYAN( 0.0f, 1.0f, 1.0f, 1.0f );
+const Color Color::TEAL( 0.0f, 0.502f, 0.502f, 1.0f );
+const Color Color::CHARTREUSE( 0.498f, 1.0f, 0.0f, 1.0f );
+const Color Color::LIME( 0.0f, 1.0f, 0.0f, 1.0f );
+const Color Color::FOREST( 0.133f, 0.545f, 0.133f, 1.0f );
+const Color Color::OLIVE( 0.502f, 0.502f, 0.0f, 1.0f );
+const Color Color::YELLOW( 1.0f, 1.0f, 0.0f, 1.0f );
+const Color Color::GOLD( 1.0f, 0.843f, 0.0f, 1.0f );
+const Color Color::GOLDENROD( 0.855f, 0.647f, 0.125f, 1.0f );
+const Color Color::ORANGE( 1.0f, 0.647f, 0.0f, 1.0f );
+const Color Color::BROWN( 0.647f, 0.165f, 0.165f, 1.0f );
+const Color Color::TAN( 0.824f, 0.706f, 0.549f, 1.0f );
+const Color Color::FIREBRICK( 0.698f, 0.133f, 0.133f, 1.0f );
+const Color Color::SCARLET( 1.0f, 0.271f, 0.271f, 1.0f );
+const Color Color::CORAL( 1.0f, 0.498f, 0.314f, 1.0f );
+const Color Color::SALMON( 0.980f, 0.502f, 0.447f, 1.0f );
+const Color Color::PINK( 1.0f, 0.753f, 0.796f, 1.0f );
+const Color Color::MAGENTA( 1.0f, 0.0f, 1.0f, 1.0f );
+const Color Color::PURPLE( 0.502f, 0.0f, 0.502f, 1.0f );
+const Color Color::VIOLET( 0.933f, 0.510f, 0.933f, 1.0f );
+const Color Color::MAROON( 0.502f, 0.0f, 0.0f, 1.0f );
 
 // ============================================================================
 
@@ -106,47 +106,47 @@ void Color::Clamp()
     a = a < 0.0f ? 0.0f : a > 1.0f ? 1.0f : a;
 }
 
-std::vector< Color > Color::getPredefinedColors()
+std::vector< Color > Color::GetPredefinedColors()
 {
     return {
-        Color::Red,
-        Color::Green,
-        Color::Blue,
-        Color::Clear,
-        Color::White,
-        Color::Black,
-        Color::Gray,
-        Color::LightGray,
-        Color::DarkGray,
-        Color::Slate,
-        Color::Navy,
-        Color::Royal,
-        Color::Sky,
-        Color::Cyan,
-        Color::Teal,
-        Color::Chartreuse,
-        Color::Lime,
-        Color::Forest,
-        Color::Olive,
-        Color::Yellow,
-        Color::Gold,
-        Color::Goldenrod,
-        Color::Orange,
-        Color::Brown,
-        Color::Tan,
-        Color::Firebrick,
-        Color::Scarlet,
-        Color::Coral,
-        Color::Salmon,
-        Color::Pink,
-        Color::Magenta,
-        Color::Purple,
-        Color::Violet,
-        Color::Maroon,
+        RED,
+        GREEN,
+        BLUE,
+        CLEAR,
+        WHITE,
+        BLACK,
+        GRAY,
+        LIGHTGRAY,
+        DARKGRAY,
+        SLATE,
+        NAVY,
+        ROYAL,
+        SKY,
+        CYAN,
+        TEAL,
+        CHARTREUSE,
+        LIME,
+        FOREST,
+        OLIVE,
+        YELLOW,
+        GOLD,
+        GOLDENROD,
+        ORANGE,
+        BROWN,
+        TAN,
+        FIREBRICK,
+        SCARLET,
+        CORAL,
+        SALMON,
+        PINK,
+        MAGENTA,
+        PURPLE,
+        VIOLET,
+        MAROON,
     };
 }
 
-void Color::debug_print() const
+void Color::DebugPrint() const
 {
     std::cout << "RGBA(" << r << ", " << g << ", " << b << ", " << a << ")" << std::endl;
 }

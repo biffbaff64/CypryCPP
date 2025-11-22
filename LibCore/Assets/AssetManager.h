@@ -23,31 +23,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "MathUtils.h"
+#ifndef CYPRYCPP_ASSETMANAGER_H
+#define CYPRYCPP_ASSETMANAGER_H
 
-int MathUtils::NextPowerOfTwo( int value )
+#include "Loaders/Resolvers/IFileHandleResolver.h"
+
+class AssetManager
 {
-    if ( value == 0 )
-    {
-        return 1;
-    }
+public:
+    AssetManager();
+    explicit AssetManager( IFileHandleResolver resolver, bool defaultLoaders = true );
+    ~AssetManager();
 
-    value--;
-    value |= value >> 1;
-    value |= value >> 2;
-    value |= value >> 4;
-    value |= value >> 8;
-    value |= value >> 16;
+    template< typename T >
+    void *Get( T name );
+};
 
-    return value + 1;
-}
-
-int MathUtils::NextPowerOfTwo( int value, int minValue )
-{
-    if ( value < minValue )
-    {
-        return minValue;
-    }
-
-    return NextPowerOfTwo( value );
-}
+#endif //CYPRYCPP_ASSETMANAGER_H

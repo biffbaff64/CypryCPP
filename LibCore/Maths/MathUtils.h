@@ -29,8 +29,8 @@
 class MathUtils
 {
 public:
-    static int next_power_of_two( int value );
-    static int next_power_of_two( int value, int min_value );
+    static int NextPowerOfTwo( int value );
+    static int NextPowerOfTwo( int value, int minValue );
 
 
 private:

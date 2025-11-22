@@ -31,21 +31,21 @@ public:
     enum ApplicationType
     {
         Windows,
-        WindowsGL,
+        WindowsGl,
         WindowsGles,
-        WindowsVK,
+        WindowsVk,
         WindowsGdk,
-        WebGL,
+        WebGl,
         XBoxOne,
         XBoxSeries,
         NintendoSwitch,
         PlayStation4,
         PlayStation5,
         Android,
-        IOS,
-        MacOS,
+        Ios,
+        MacOs,
 
-        DefaultType = WindowsGL,
+        DefaultType = WindowsGl,
     };
 
     enum ApplicationFamily
@@ -65,8 +65,8 @@ public:
     void SetFamilyGroup( ApplicationFamily familyGroup );
 
 private:
-    ApplicationType   m_TargetPlatform = ApplicationType::DefaultType;
-    ApplicationFamily m_FamilyGroup    = ApplicationFamily::DefaultFamily;
+    ApplicationType   mTargetPlatform = ApplicationType::DefaultType;
+    ApplicationFamily mFamilyGroup    = ApplicationFamily::DefaultFamily;
 
     Platform()  = default;
     ~Platform() = default;

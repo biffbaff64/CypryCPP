@@ -149,7 +149,7 @@ public:
     /// <summary>
     /// The initial window background color. Defaults to blue.
     /// </summary>
-    Color InitialBackgroundColor = Color::Blue;
+    Color InitialBackgroundColor = Color::BLUE;
 
     /// <summary>
     /// Sets the window title. Defaults to empty string.

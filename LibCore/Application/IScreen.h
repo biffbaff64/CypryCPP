@@ -26,57 +26,56 @@
 #ifndef CYPRYCPP_ISCREEN_H
 #define CYPRYCPP_ISCREEN_H
 
-/**
- * Represents one of many application screens, such as a main menu,
- * a settings menu, the game screen and so on.
- */
+/// <summary>
+/// Represents one of many application screens, such as a main menu,
+/// a settings menu, the game screen and so on.
+/// </summary>
 class IScreen
 {
 public:
-    /**
-    * Called when this screen becomes the current screen for
-    * a {@link Game}.
-    */
+    /// <summary>
+    /// Called when this screen becomes the current screen for <see cref="Game"/>.
+    /// </summary>
     void Show();
 
-    /**
-    * Called when the screen should update itself.
-    * @param delta The time in seconds since the last update.
-    */
+    /// <summary>
+    /// Called when the screen should update itself.
+    /// </summary>
+    /// <param name="delta"> The time in seconds since the last update. </param>
     void Update( float delta );
 
-    /**
-    * Called when the screen should render itself.
-    * @param delta The time in seconds since the last render.
-    */
+    /// <summary>
+    /// Called when the screen should render itself.
+    /// </summary>
+    /// <param name="delta"> The time in seconds since the last render. </param>
     void Render( float delta );
 
-    /**
-    * Called when the Application is resized. This can happen at any point during
-    * a non-paused state but will never happen before a call to create().
-    */
+    /// <summary>
+    /// Called when the Application is resized. This can happen at any point during
+    /// a non-paused state but will never happen before a call to create().
+    /// </summary>
     void Resize( int width, int height );
 
-    /**
-    * Called when the Application is paused, usually when it's not active or visible
-    * on-screen. An Application is also paused before it is destroyed.
-    */
+    /// <summary>
+    /// Called when the Application is paused, usually when it's not active or visible
+    /// on-screen. An Application is also paused before it is destroyed.
+    /// </summary>
     void Pause();
 
-    /**
-    * Called when the Application is resumed from a paused state, usually when
-    * it regains focus.
-    */
+    /// <summary>
+    /// Called when the Application is resumed from a paused state, usually when
+    /// it regains focus.
+    /// </summary>
     void Resume();
 
-    /**
-    * Called when this screen is no longer the current screen for a {@link Game}.
-    */
+    /// <summary>
+    /// Called when this screen is no longer the current screen for a <see cref="Game"/>.
+    /// </summary>
     void Hide();
 
-    /**
-    * Called when this screen should release all resources.
-    */
+    /// <summary>
+    /// Called when this screen should release all resources.
+    /// </summary>
     void Close();
 };
 

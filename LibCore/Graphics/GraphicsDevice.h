@@ -28,7 +28,12 @@
 
 #include <vector>
 
+#include "GraphicsBackend.h"
 #include "ICursor.h"
+#include "Pixmap.h"
+#include "FrameBuffers/FramebufferConfig.h"
+#include "OpenGL/GlVersion.h"
+#include "Utils/HdpiUtils.h"
 
 class GraphicsDevice
 {
@@ -38,17 +43,17 @@ public:
     /// <summary>
     /// Gets or sets the OpenGL version information.
     /// </summary>
-    GLVersion GLVersion;
+    GlVersion mGlVersion;
 
     /// <summary>
     /// Gets the type of graphics backend being used.
     /// </summary>
-    GraphicsBackend::BackendType GraphicsType;
+    GraphicsBackend::BackendType mGraphicsType;
 
     /// <summary>
     /// Gets or sets the buffer config data (bits per pixel, depth, stencil, samples).
     /// </summary>
-    FramebufferConfig BufferConfig;
+    FramebufferConfig mBufferConfig;
 
     /// <summary>
     /// Gets or sets the time span between the current frame and the last frame in seconds,
@@ -57,36 +62,36 @@ public:
     /// This value is typically used for frame-rate independent animation and game logic.
     /// </para>
     /// </summary>
-    float DeltaTime;
+    float mDeltaTime;
 
     /// <summary>
     /// Gets the current width of the application window in pixels.
     /// </summary>
-    int Width;
+    int mWidth;
 
     /// <summary>
     /// Gets the current height of the application window in pixels.
     /// </summary>
-    int Height;
+    int mHeight;
 
     /// <summary>
     /// Gets or sets the width of the back buffer in pixels.
     /// The back buffer is the off-screen buffer where rendering is performed
     /// before being presented to the screen.
     /// </summary>
-    int BackBufferWidth;
+    int mBackBufferWidth;
 
     /// <summary>
     /// Gets or sets the height of the back buffer in pixels.
     /// The back buffer is the off-screen buffer where rendering is performed
     /// before being presented to the screen.
     /// </summary>
-    int BackBufferHeight;
+    int mBackBufferHeight;
 
     /// <summary>
     /// Gets a value indicating whether the application is currently in fullscreen mode.
     /// </summary>
-    bool IsFullscreen;
+    bool mIsFullscreen;
 
     /// <summary>
     /// Gets or sets the current GLFW window context.
@@ -95,7 +100,7 @@ public:
     /// which might be needed for advanced GLFW operations.
     /// </para>
     /// </summary>
-    Window CurrentContext;
+    Window mCurrentContext;
 
     /// <summary>
     /// Gets a value indicating whether continuous rendering is enabled.
@@ -108,7 +113,7 @@ public:
     /// using <see cref="RequestRendering" />.
     /// </para>
     /// </summary>
-    bool ContinuousRendering;
+    bool mContinuousRendering;
 
     // ========================================================================
     // ========================================================================
@@ -185,7 +190,7 @@ public:
     /// Returns the current frame ID. The frame ID is typically incremented with each rendered frame.
     /// </summary>
     /// <returns>The current frame ID.</returns>
-    long GetFrameID();
+    long GetFrameId();
 
     /// <summary>
     /// Returns the current frames per second (FPS). This value is usually calculated as a moving
@@ -199,22 +204,14 @@ public:
     /// PPC describes the physical pixel density of the screen.
     /// </summary>
     /// <returns>A tuple containing PPC in the X and Y directions (PpcXY).</returns>
-    (
-    float X,
-    float Y
-    )
-    GetPpcXY();
+    std::tuple< float, float > GetPpcXY();
 
     /// <summary>
     /// Gets the pixels per inch (PPI) in the X and Y directions for the display.
     /// PPI describes the physical pixel density of the screen, commonly used in display specifications.
     /// </summary>
     /// <returns>A tuple containing PPI in the X and Y directions (PpiXY).</returns>
-    (
-    float X,
-    float Y
-    )
-    GetPpiXY();
+    std::tuple< float, float > GetPpiXY();
 
     /// <summary>
     /// Whether an IGraphics implementation supports display mode changing or not.
@@ -390,7 +387,7 @@ public:
     /// This allows you to set standard system cursors like arrow, crosshair, hand, etc.
     /// </summary>
     /// <param name="systemCursor"> The system cursor to use. </param>
-    void SetSystemCursor( ICursor.SystemCursor systemCursor );
+    void SetSystemCursor( ICursor::SystemCursor systemCursor );
 
     // ========================================================================
 
@@ -399,17 +396,17 @@ public:
     public:
         DisplayMode( int width, int height, int refreshRate, int bitsPerPixel );
 
-        void debug_print();
+        void DebugPrint();
 
         /// <summary>
         /// Width of this display mode in pixels.
         /// </summary>
-        int Width;
+        int mWidth;
 
         /// <summary>
         /// Height of this display mode in pixels.
         /// </summary>
-        int Height;
+        int mHeight;
 
         /// <summary>
         /// The refresh rate of this display mode in Hertz (Hz).
@@ -417,14 +414,14 @@ public:
         /// Common values are 60Hz, 75Hz, 144Hz, etc. Higher refresh rates can result in
         /// smoother visuals.
         /// </summary>
-        int RefreshRate;
+        int mRefreshRate;
 
         /// <summary>
         /// Bits per Pixel for this display mode, indicating the color depth.
         /// Common values are 16-bit, 24-bit, and 32-bit. Higher bit depths allow for
         /// more colors to be displayed.
         /// </summary>
-        int BitsPerPixel;
+        int mBitsPerPixel;
     };
 };
 
